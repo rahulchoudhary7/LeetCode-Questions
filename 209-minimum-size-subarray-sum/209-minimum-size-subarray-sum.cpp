@@ -7,14 +7,15 @@ public:
     for(int i =0; i< mid; i++){
         sum+=nums[i];
     }
-    int maxi = sum;
+    // int maxi = sum;
+    if (sum>=target) return true;
     int l =0, r = mid ;
     while(r!=n){
         sum-=nums[l++];
         sum+=nums[r++];
-        maxi = max(sum, maxi);
+        if (sum>=target) return true;
     }
-    if(maxi>=target) return true;
+    // if(maxi>=target) return true;
     return false;
  }
     
