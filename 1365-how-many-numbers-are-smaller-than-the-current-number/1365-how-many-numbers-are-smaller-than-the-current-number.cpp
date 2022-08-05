@@ -19,22 +19,21 @@ public:
     vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
         int n = nums.size();
         vector<int> temp(nums);
-        vector<int> res;
         
+        vector<int> res;
         sort(temp.begin(), temp.end());
         
-        unordered_map<int, int> m;
+        unordered_map<int, int> hash_map;
         
-        for(int i = 0; i<n; i++){
-            if(m.find(temp[i])== m.end())
-                m[temp[i]] = i;
-        }
+        for(int i = n-1; i>=0; i--)
+            hash_map[temp[i]] = i;
         
-        for(int i = 0; i<n; i++){
-            int target = nums[i];
-            int ans = m[target];
-            res.push_back(ans);
-        }
+        
+        for(int i = 0; i<n; i++)
+            res.push_back(hash_map[nums[i]]);
+        
+        
+        
         return res;
     }
 };
