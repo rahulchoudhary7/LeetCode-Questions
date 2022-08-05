@@ -17,19 +17,23 @@ private:
     }
 public:
     vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
-        // vector<int> temp(nums);
+        int n = nums.size();
+        vector<int> temp(nums);
         vector<int> res;
         
-        // sort(temp.begin(), temp.end());
+        sort(temp.begin(), temp.end());
         
-        for(int i = 0; i<nums.size(); i++){
-            int count = 0;
-            for(int j = 0; j<nums.size(); j++){
-                if(i == j) continue;
-                if(nums[i]>nums[j])
-                    count++;
-            }
-            res.push_back(count);
+        unordered_map<int, int> m;
+        
+        for(int i = 0; i<n; i++){
+            if(m.find(temp[i])== m.end())
+                m[temp[i]] = i;
+        }
+        
+        for(int i = 0; i<n; i++){
+            int target = nums[i];
+            int ans = m[target];
+            res.push_back(ans);
         }
         return res;
     }
