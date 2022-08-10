@@ -40,18 +40,19 @@ private:
     }
 public:
     void flatten(TreeNode* root) {
-       while (root) {
-            if (root->left && root->right) {
-                TreeNode* t = root->left;
-                while (t->right)
-                    t = t->right;
-                t->right = root->right;
+        TreeNode* curr = root;
+        
+        while(curr){
+            if(curr->left){
+                TreeNode* temp = curr->left;
+                while(temp->right)
+                    temp = temp->right;
+                
+                temp->right = curr->right;
+                curr->right = curr->left;
+                curr->left = NULL;
             }
-
-            if(root->left)
-                root->right = root->left;
-            root->left = NULL;
-            root = root->right;
+            curr = curr->right;
         }
     }
 };
