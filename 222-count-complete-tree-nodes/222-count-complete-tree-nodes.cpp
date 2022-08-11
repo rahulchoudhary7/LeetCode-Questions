@@ -12,11 +12,36 @@
 class Solution {
 private:
     void countt(TreeNode* root, int &count){
-        if(root==NULL) return;
+//         if(root==NULL) return;
         
-        count++;
-        countt(root->left, count);
-        countt(root->right, count);
+//         count++;
+//         countt(root->left, count);
+//         countt(root->right, count);
+        TreeNode* curr = root;
+        
+        while(curr){
+            if(!curr->left){
+                curr = curr->right;
+                count++;
+            }
+            
+            else{
+                TreeNode* temp = curr->left;
+                while(temp->right && temp->right!=curr){
+                    temp = temp->right;
+                }
+                
+                if(temp->right == curr){
+                    temp->right = NULL;
+                    count++;
+                    curr = curr->right;
+                }
+                else{
+                    temp->right = curr;
+                    curr = curr->left;
+                }
+            }
+        }
     }
 public:
     int countNodes(TreeNode* root) {
