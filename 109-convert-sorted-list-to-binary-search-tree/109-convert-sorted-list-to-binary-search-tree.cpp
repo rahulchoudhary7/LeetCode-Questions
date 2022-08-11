@@ -21,20 +21,20 @@
  */
 class Solution {
 private:
-    TreeNode* buildTree(TreeNode* root, int data){
-        if(root == NULL){
-            TreeNode* root = new TreeNode(data);
-            return root;
-        }
+//     TreeNode* buildTree(TreeNode* root, int data){
+//         if(root == NULL){
+//             TreeNode* root = new TreeNode(data);
+//             return root;
+//         }
         
-        if(data > root->val){
-            root->right = buildTree(root->right, data);
-        }
-        else{
-            root->left = buildTree(root->left, data);
-        }
-        return root;
-    }
+//         if(data > root->val){
+//             root->right = buildTree(root->right, data);
+//         }
+//         else{
+//             root->left = buildTree(root->left, data);
+//         }
+//         return root;
+//     }
 public:
     TreeNode* sortedListToBST(ListNode* head) {
         if(!head) return NULL;
