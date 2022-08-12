@@ -10,22 +10,47 @@
  * };
  */
 class Solution {
-    void kthSmallestHelp(TreeNode* root, int k, int &ans, int &res){
-        if(root == NULL) return;
+//     void kthSmallestHelp(TreeNode* root, int k, int &smallValueCount, int &res){
+//         if(root == NULL) return;
         
-        kthSmallestHelp(root->left, k, ans, res);
-        ans++;
-        if(ans == k){
-            res = root->val;
-            return;
-        }
-        kthSmallestHelp(root->right, k, ans, res);
-    }
+//         kthSmallestHelp(root->left, k, smallValueCount, res);
+//         smallValueCount++;
+//         if(smallValueCount == k){
+//             res = root->val;
+//             return;
+//         }
+//         kthSmallestHelp(root->right, k, smallValueCount, res);
+//     }
 public:
     int kthSmallest(TreeNode* root, int k) {
-        int ans = 0;
-        int res = 0;
-        kthSmallestHelp(root, k, ans, res);
-        return res;
+        
+        TreeNode* curr = root;
+        
+        vector<int> ans;
+        
+        while(curr){
+            if(!curr->left){
+                ans.push_back(curr->val);
+                curr = curr->right;
+            }
+            
+            else{
+                TreeNode* temp = curr->left;
+                while(temp->right!= NULL && temp->right != curr)
+                    temp = temp->right;
+                
+                if(temp->right==NULL){
+                    temp->right = curr;
+                    curr = curr->left;
+                }
+                else{
+                    temp->right = NULL;
+                    ans.push_back(curr->val);
+                    curr = curr->right;
+                }
+            }
+        }
+        // int n = ans.size();
+        return ans[k-1];
     }
 };
