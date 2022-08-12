@@ -50,7 +50,8 @@ public:
                 }
             }
         }
-        // int n = ans.size();
-        return ans[k-1];
+        int res = ans[k-1];
+        ans.clear();
+        return res;
     }
 };
