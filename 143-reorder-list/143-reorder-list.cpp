@@ -30,7 +30,7 @@ public:
         
         curr = head;
         
-        while(!s.empty()){
+        while(curr && !s.empty()){
             ListNode* temp = curr->next;
             ListNode* last = s.top();
             s.pop();
