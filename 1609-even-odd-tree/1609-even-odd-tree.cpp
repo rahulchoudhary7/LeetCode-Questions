@@ -49,7 +49,7 @@ public:
             vector<int> temp;
             temp = levelOrder[i];
             int m = temp.size();
-            if(i%2==0){
+            if(!(i&1)){
                 for(int j = 0; j<m; j++){
                     if(j==0){
                         if(!(temp[j] &1) ) return false;
