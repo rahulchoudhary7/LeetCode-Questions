@@ -10,32 +10,32 @@
  * };
  */
 class Solution {
-    void convert(TreeNode* &root, vector<TreeNode*> &inorder){
-        TreeNode* curr = root;
-        while(curr){
-            if(curr->left == NULL){
-                inorder.push_back(curr);
-                curr = curr->right;
-            }
-            else{
-                TreeNode* temp = curr->left;
-                while(temp->right && temp->right!=curr)
-                    temp = temp->right;
+//     void convert(TreeNode* &root, vector<TreeNode*> &inorder){
+//         TreeNode* curr = root;
+//         while(curr){
+//             if(curr->left == NULL){
+//                 inorder.push_back(curr);
+//                 curr = curr->right;
+//             }
+//             else{
+//                 TreeNode* temp = curr->left;
+//                 while(temp->right && temp->right!=curr)
+//                     temp = temp->right;
                 
-                if(temp->right == NULL)
-                {
-                    temp->right = curr;
-                    curr = curr->left;
-                }
-                else{
-                    temp->right = NULL;
-                    inorder.push_back(curr);
-                    curr = curr->right;
-                }
-            }
-        }
-        reverse(inorder.begin(), inorder.end());
-    }
+//                 if(temp->right == NULL)
+//                 {
+//                     temp->right = curr;
+//                     curr = curr->left;
+//                 }
+//                 else{
+//                     temp->right = NULL;
+//                     inorder.push_back(curr);
+//                     curr = curr->right;
+//                 }
+//             }
+//         }
+//         reverse(inorder.begin(), inorder.end());
+//     }
     
     int sum = 0;
     void helpConvert(TreeNode* root){
