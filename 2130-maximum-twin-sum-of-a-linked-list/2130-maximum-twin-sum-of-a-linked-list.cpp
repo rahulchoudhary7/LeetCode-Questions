@@ -10,24 +10,7 @@
  */
 class Solution {
 private:
-    ListNode* newLL(ListNode* &head, ListNode* &dummy){
-        ListNode* prev = NULL;
-        ListNode* fwd = NULL;
-        
-        ListNode* curr = head;
-        ListNode* newCurr = dummy;
-        while(curr){
-            
-            ListNode* temp = new ListNode(curr->val);
-            newCurr->next = temp;
-            newCurr = temp;
-            
-            curr = curr->next;
-        }
-        return reverse(dummy->next);
-    }
-    
-    ListNode* reverse(ListNode* & head){
+    ListNode* reverseList(ListNode* head) {
         ListNode* prev = NULL;
         ListNode* fwd = NULL;
         
@@ -65,27 +48,25 @@ public:
         
         
         ListNode* curr = head;
+        ListNode* prev = NULL;
+        ListNode* fast = head->next;
+        ListNode* slow = head;
+              
+        while(fast && fast->next){
+            fast = fast->next->next;
+            slow = slow->next;
+        }
         
-//         ListNode* fast = head->next;
-//         ListNode* slow = head;
+        ListNode* rCurr = reverseList(slow->next);
         
-//         while(fast && fast->next){
-//             fast = fast->next->next;
-//             slow = slow->next;
-//         }
-        ListNode* dummy = new ListNode(-1);
+        // ListNode* stopcheck = rCurr;
         
-        ListNode* rCurr = newLL(head, dummy);
-        
-        
-        while(curr && rCurr){
+        while(rCurr){
             int sum = curr->val + rCurr->val;
             maxTwinSum = max(sum, maxTwinSum);
-            
             curr = curr->next;
             rCurr = rCurr->next;
         }
-        
         
         
         
