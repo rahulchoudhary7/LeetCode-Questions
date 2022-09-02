@@ -17,35 +17,44 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         q.push(NULL);
-        vector<vector<int>> lot;
-        vector<int> temp1;
+        // vector<vector<int>> lot;
+        // vector<int> temp1;
+        
+        double avg = 0;
+        int count = 0;
         
         while(!q.empty()){
             TreeNode* temp = q.front();
             q.pop();
             
             if(temp==NULL){
-                lot.push_back(temp1);
-                temp1.clear();
+                // lot.push_back(temp1);
+                // temp1.clear();
+                avg = avg/count;
+                ans.push_back(avg);
+                avg = 0;
+                count = 0;
                 if(!q.empty()){
                     q.push(NULL);
                 }
             }
             else{
-                temp1.push_back(temp->val);
+                // temp1.push_back(temp->val);
+                avg+=temp->val;
+                count++;
                 if(temp->right) q.push(temp->right);
                 if(temp->left) q.push(temp->left);
             }
         }
         
-        for(int i=0; i<lot.size(); i++){
-            double avg = 0;
-            for(int j=0; j<lot[i].size(); j++){
-                avg+=lot[i][j];
-            }
-            avg = avg/lot[i].size();
-            ans.push_back(avg);
-        }
+        // for(int i=0; i<lot.size(); i++){
+        //     double avg = 0;
+        //     for(int j=0; j<lot[i].size(); j++){
+        //         avg+=lot[i][j];
+        //     }
+        //     avg = avg/lot[i].size();
+        //     ans.push_back(avg);
+        // }
         return ans;
     }
 };
