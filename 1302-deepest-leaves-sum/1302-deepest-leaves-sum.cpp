@@ -16,7 +16,7 @@ public:
         q.push(root);
         q.push(NULL);
         
-        vector<int> temp;
+        int sum = 0;
         
         while(!q.empty()){
             TreeNode* frontNode = q.front();
@@ -25,21 +25,16 @@ public:
             if(frontNode== NULL){
                 if(!q.empty()){
                     q.push(NULL);
-                    temp.clear();
+                    sum=0;
                 }
             }
             else{
-                temp.push_back(frontNode->val);
+                sum+=frontNode->val;
                 if(frontNode->left) q.push(frontNode->left);
                 if(frontNode->right) q.push(frontNode->right);
             }
         }
         
-        int n = temp.size();
-        int sum = 0;
-        
-        for(int i=0; i<temp.size(); i++)
-            sum+=temp[i];
         
         return sum;
     }
