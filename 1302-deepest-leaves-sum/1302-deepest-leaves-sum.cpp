@@ -16,7 +16,6 @@ public:
         q.push(root);
         q.push(NULL);
         
-        vector<vector<int>> levels;
         vector<int> temp;
         
         while(!q.empty()){
@@ -24,9 +23,10 @@ public:
             q.pop();
             
             if(frontNode== NULL){
-                levels.push_back(temp);
-                temp.clear();
-                if(!q.empty()) q.push(NULL);
+                if(!q.empty()){
+                    q.push(NULL);
+                    temp.clear();
+                }
             }
             else{
                 temp.push_back(frontNode->val);
@@ -35,11 +35,11 @@ public:
             }
         }
         
-        int n = levels.size();
+        int n = temp.size();
         int sum = 0;
         
-        for(int i=0; i<levels[n-1].size(); i++)
-            sum+=levels[n-1][i];
+        for(int i=0; i<temp.size(); i++)
+            sum+=temp[i];
         
         return sum;
     }
