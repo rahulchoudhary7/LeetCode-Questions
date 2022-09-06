@@ -14,13 +14,12 @@ public:
     TreeNode* pruneTree(TreeNode* root) {
         if(root == NULL) return NULL;
         if(root->val == 0 && !root->left && !root->right) return NULL;
-        // if(root->val ==0 && !root->left && root->right->val == 0) return NULL;
-        // if(root->val ==0 && root->left->val ==0 && !root->right) return NULL;
-        // if(root->val ==0 && (root->left && root->left->val == 0 && root->right && root->right->val == 0))           return NULL;
         
-        root->left = pruneTree(root->left);
-        root->right = pruneTree(root->right);
-        if(root->val == 0 && !root->left && !root->right) return NULL;
+        TreeNode* leftSide = pruneTree(root->left);
+        TreeNode* rightSide = pruneTree(root->right);
+        root->left = leftSide;
+        root->right = rightSide;
+        if(root->val == 0 && !leftSide && !rightSide) return NULL;
         return root;
     }
 };
