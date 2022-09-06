@@ -13,7 +13,6 @@ class Solution {
 public:
     TreeNode* pruneTree(TreeNode* root) {
         if(root == NULL) return NULL;
-        if(root->val == 0 && !root->left && !root->right) return NULL;
         
         TreeNode* leftSide = pruneTree(root->left);
         TreeNode* rightSide = pruneTree(root->right);
