@@ -37,7 +37,7 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) {
         if(!node) return NULL;
-        vector<Node*> visited(1000, NULL);
+        vector<Node*> visited(101, NULL);
         
         Node* clone = new Node(node->val);
         visited[node->val] = clone;
