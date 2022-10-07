@@ -23,23 +23,6 @@ public:
     ListNode* swapNodes(ListNode* head, int k) {
         int n = getLength(head);
         
-//         if(k==1){
-//             ListNode* dummy = new ListNode(-1);
-//             ListNode* curr = head;
-//             ListNode* prev = head;
-//             while(curr->next){
-//                 prev = curr;
-//                 curr = curr->next;
-//             }
-//             ListNode* temp = head->next;
-//             dummy->next = curr;
-//             curr->next = temp;
-//             prev->next = head;
-//             head->next = NULL;
-//             return dummy->next;
-            
-//         }
-        
         ListNode* kBeg = NULL;
         
         ListNode* kEnd = NULL;
