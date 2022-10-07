@@ -26,7 +26,6 @@ public:
         ListNode* kBeg = NULL;
         
         ListNode* kEnd = NULL;
-        int s, e;
         
         int count = 0;
         ListNode* curr = head;
@@ -34,19 +33,18 @@ public:
         while(curr){
             count++;
             if(count==k){
-                s = curr->val;
+                // s = curr->val;
                 kBeg = curr;
             }
             if(count == n-k+1){
-                e = curr->val;
+                // e = curr->val;
                 kEnd = curr;
             }
             
             curr = curr->next;
         }
+        swap(kBeg->val, kEnd->val);
         
-        kBeg->val = e;
-        kEnd->val = s;
         
         return head;
     }
