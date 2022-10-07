@@ -10,41 +10,20 @@
  */
 class Solution {
 public:
-    
-    int getLength(ListNode* head){
-        int count =0;
-        while(head){
-            count++;
-            head = head->next;
-        }
-        return count;
-    }
-    
     ListNode* swapNodes(ListNode* head, int k) {
-        int n = getLength(head);
+        ListNode* kBeg = head, *kEnd = head, *kth = NULL;
         
-        ListNode* kBeg = NULL;
+        while(--k) kBeg = kBeg->next;
         
-        ListNode* kEnd = NULL;
+        kth = kBeg;
         
-        int count = 0;
-        ListNode* curr = head;
-        
-        while(curr){
-            count++;
-            if(count==k){
-                // s = curr->val;
-                kBeg = curr;
-            }
-            if(count == n-k+1){
-                // e = curr->val;
-                kEnd = curr;
-            }
-            
-            curr = curr->next;
+        kBeg = kBeg->next;
+        while(kBeg){
+            kEnd = kEnd->next;
+            kBeg = kBeg->next;
         }
-        swap(kBeg->val, kEnd->val);
         
+        swap(kth->val, kEnd->val);
         
         return head;
     }
