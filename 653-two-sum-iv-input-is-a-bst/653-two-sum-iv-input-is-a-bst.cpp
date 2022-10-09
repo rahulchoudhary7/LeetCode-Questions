@@ -12,30 +12,43 @@
 class Solution {
 private:
     void inorder(TreeNode* root, vector<int> &in){
-        if(!root) return ;
+        TreeNode* curr = root;
         
-        inorder(root->left, in);
-        in.push_back(root->val);
-        inorder(root->right, in);
+        while(curr){
+            if(!curr->left){
+                in.push_back(curr->val);
+                curr = curr->right;
+            }
+            else{
+                TreeNode* temp = curr->left;
+                while(temp->right && temp->right!=curr){
+                    temp = temp->right;
+                }
+                
+                if(temp->right == NULL){
+                    temp->right = curr;
+                    curr = curr->left;
+                }
+                else{
+                    temp->right = NULL;
+                    in.push_back(curr->val);
+                    curr = curr->right;
+                }
+            }
+        }
     }
+    
 public:
     bool findTarget(TreeNode* root, int k) {
-        if(!root->left && !root->right) return false;
-        vector<int> in;
+        vector<int>in;
         inorder(root, in);
         
-        int i=0, j=in.size()-1;
-        int sum=0;
+        int i=0, j = in.size()-1;
+        
         while(i<j){
-            sum=0;
-            sum+=in[i];
-            sum+=in[j];
-            if(sum==k){
-                return true;
-            }
-            else if(sum<k){
-                i++;
-            }
+            int sum = in[i]+in[j];
+            if(sum==k) return true;
+            else if(sum<k) i++;
             else j--;
         }
         return false;
